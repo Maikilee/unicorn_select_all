@@ -1,0 +1,75 @@
+{% extends "base/base_bootstrap.html" %}
+{% load static %}
+{% block title %}
+{% endblock %}
+
+{% block body %}
+    <div class="page home-page">
+        <!-- Main Navbar-->
+        <header class="header">
+            <nav class="navbar">
+                <div class="container-fluid">
+                    <div class="navbar-holder d-flex align-items-center justify-content-between">
+                        <!-- Navbar Header-->
+                        <div class="navbar-header">
+                            <!-- Navbar Brand --><a href="home.html" class="navbar-brand">
+                            <div class="brand-text brand-big hidden-lg-down">
+                                <span>Select </span><strong>All</strong></div>
+                            <div class="brand-text brand-small"><strong>SA</strong></div>
+                        </a>
+                            <!-- Toggle Button--><a id="toggle-btn" href="#"
+                                                    class="menu-btn active"><span></span><span></span><span></span></a>
+                        </div>
+                        <!-- Navbar Menu -->
+                        <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                            <!-- Logout    -->
+                            <li class="nav-item"><a href="{% url 'select_all_logout' %}" class="nav-link logout">logout<i
+                                    class="fa fa-sign-out"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="page-content d-flex align-items-stretch">
+            <!-- Side Navbar -->
+            <nav class="side-navbar">
+                <!-- Sidebar Header-->
+                <div class="sidebar-header d-flex align-items-center">
+                    <div class="title">
+                        <h1 class="h4">{{ request.user }}</h1>
+                    </div>
+                </div>
+                <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+                <ul class="list-unstyled">
+                    {% block databases %}
+                    {% endblock %}
+                    {% block athena_unbind_user %}
+                    {% endblock %}
+                </ul>
+            </nav>
+            <div class="content-inner">
+                <header class="page-header">
+                    <div class="container-fluid">
+                        <h2 class="no-margin-bottom">Select All</h2>
+                    </div>
+                </header>
+                <ul class="breadcrumb">
+                    <div class="container-fluid">
+                        <li class="breadcrumb-item active">Query</li>
+                    </div>
+                </ul>
+                {% block content %}
+                {% endblock %}
+                <footer class="main-footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>www.bkjk.com &copy; 2017-2019</p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+{% endblock %}

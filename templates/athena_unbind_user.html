@@ -1,0 +1,66 @@
+{% extends "base/base.html" %}
+{% block title %}
+    贝壳管家解绑
+{% endblock %}
+{% block athena_unbind_user %}
+    <li>
+        <a href="/athena_unbind_user/">
+            <i class="icon-padnote"></i>
+            解绑
+        </a>
+    </li>
+{% endblock %}
+{% block content %}
+    <section class="forms">
+        <div class="container-fluid">
+            <div class="row flex-lg-row">
+                <div class="col-lg-12">
+                    {% if success %}
+                        <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                ×
+                            </button>
+                            {{ success }}
+                        </div>
+                    {% endif %}
+                    {% if error %}
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                ×
+                            </button>
+                            {{ error }}
+                        </div>
+                    {% endif %}
+                    <div class="card">
+                        <div class="card-close">
+                            <div class="dropdown">
+                                <button type="button" id="closeCard" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i>
+                                </button>
+                                <div aria-labelledby="closeCard" class="dropdown-menu has-shadow"><a href="#"
+                                                                                                     class="dropdown-item remove">
+                                    <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i
+                                        class="fa fa-gear"></i>Edit</a></div>
+                            </div>
+                        </div>
+                        <div class="card-header d-flex align-items-center">
+                            <h3 class="h4 col-lg-3">解绑</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="form_query" class="form-inline" action="/athena_unbind_user/" method="post">
+                                {% csrf_token %}
+                                <div class="form-group form-group-lg">
+                                    <label for="customer_id" class="sr-only">用户ID</label>
+                                    <input id="customer_id" name="customer_id" placeholder="用户ID" type="text" class="mx-sm-3 form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" id="btn_exec" value="执行" class="mx-sm-6 btn btn-primary">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
